@@ -1,0 +1,162 @@
+<head><title>GKSHTML</title></head>
+<body>
+<table id="table1">
+       <tr>
+        <td>
+            <input class="cbox" type="checkbox">
+        </td>
+        <td>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </td>
+        <td>
+            <input size="40">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input class="cbox" type="checkbox">
+        </td>
+        <td>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </td>
+        <td>
+            <input type="text">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input class="cbox" type="checkbox">
+        </td>
+        <td>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </td>
+        <td>
+            <input type="text">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input class="cbox" type="checkbox">
+        </td>
+        <td>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </td>
+        <td>
+            <input type="text">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input class="cbox" type="checkbox">
+        </td>
+        <td>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </td>
+        <td>
+            <input type="text">
+        </td>
+    </tr>
+</table>
+<button onclick="add()">Add</button>
+<br>
+<button onclick="del()">Delete</button>
+<br>
+<button onclick="copy()">Copy</button>
+<br>
+<button onclick="reColor()">reColor</button>
+<select id="a">
+    <option>red</option>
+    <option>white</option>
+    <option>green</option>
+</select>
+<script>
+    function add(){
+    var table = document.getElementById('table1');
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.className = 'cbox';
+    cell1.appendChild(checkbox);
+    var select = document.createElement('select');
+    select.options[0] = new Option('1','');
+    select.options[1] = new Option('2','');
+    select.options[2] = new Option('3','');
+    cell2.appendChild(select);
+    var text = document.createElement('input');
+    cell3.appendChild(text);
+    }
+
+    function del(){
+    var table = document.getElementById('table1');
+    var cboxes = table.getElementsByClassName('cbox');
+    for (var i = 0; i < cboxes.length; i++){
+    if (cboxes[i].checked==true){
+    table.deleteRow(i);
+    i--;
+    }
+    }
+    }
+
+    function copy(){
+    var table = document.getElementById('table1');
+    var cboxes = table.getElementsByClassName('cbox');
+    for (var i = 0; i < cboxes.length; i++){
+    if (cboxes[i].checked==true){
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.className = 'cbox';
+    cell1.appendChild(checkbox);
+    var select = document.createElement('select');
+    select.options[0] = new Option('1','');
+    select.options[1] = new Option('2','');
+    select.options[2] = new Option('3','');
+    cell2.appendChild(select);
+    var text = document.createElement('input');
+    text.value = table.rows[i].cells[2].childNodes[0].value;
+    cell3.appendChild(text);
+    }
+    }
+    }
+
+    function reColor(){
+    var table = document.getElementById('table1');
+    var select = document.getElementById('a');
+    var cboxes = table.getElementsByClassName('cbox');
+    for (var i = 0; i < cboxes.length; i++){
+    if (cboxes[i].checked==true){
+    table.rows[i].style.backgroundColor = select.options[select.selectedIndex].text;
+    }
+
+    }
+
+    }
+
+</script>
+</body>
